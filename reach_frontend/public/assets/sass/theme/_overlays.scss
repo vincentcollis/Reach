@@ -1,0 +1,210 @@
+body {
+    .p-overlaypanel {
+        @include content();
+        @include corner-all();
+        @include overlay-shadow();
+        border: grey;
+
+        .p-overlaypanel-close {
+            background-color: $primaryColor;
+            color: $primaryTextColor;
+            text-align: center;
+            width: 1.538em;
+            height: 1.538em;
+            line-height: 1.538em;
+            @include transition(background-color $transitionDuration);
+
+            &:hover {
+                background-color: darken($primaryColor, 5%);
+                color: $primaryTextColor;
+            }
+
+            span {
+                width: 0.692em;
+                line-height: inherit;
+                position: relative;
+                right: .15em;
+            }
+        }
+
+        &:after {
+            border-color: rgba($contentBgColor, 0);
+            border-bottom-color: $contentBgColor;
+        }
+
+        &:before {
+            border-color: rgba($contentBorderColor, 0);
+            border-bottom-color: $contentBorderColor;
+        }
+
+        &.p-overlaypanel-flipped {
+            &:after {
+                border-top-color: $contentBgColor;
+            }
+
+            &:before {
+                border-top-color: $contentBorderColor;
+            }
+        }
+    }
+
+    .p-dialog {
+            @include corner-all();
+            @include content();
+            @include overlay-shadow();
+            border: grey;
+
+            .p-dialog-titlebar {
+                @include header();
+                @include corner-top();
+                padding: 1em;
+                border: 0 none;
+
+                .p-dialog-title {
+                    margin: 0;
+                    float: none;
+                    vertical-align: middle;
+                }
+
+                .p-dialog-titlebar-icon {
+                    color: $headerIconColor;
+                    border: 0 none;
+                    @include transition(color $transitionDuration);
+                    padding: 0;
+                    margin-left: .35em;
+                    font-size: $fontSize + 2;
+
+                    &:hover {
+                        color: darken($headerIconHoverColor, 10%);
+                    }
+
+                    &:focus {
+                        outline: 0;
+                    }
+                }
+            }
+
+            .p-dialog-content {
+                padding: 1em;
+            }
+
+            .p-dialog-footer {
+                @include content();
+                padding: $headerPadding;
+                text-align: right;
+                border-width: 1px 0 0 0;
+
+                button {
+                    margin: 0 .35em 0 0;
+                }
+            }
+
+            &.p-confirm-dialog {
+                .p-dialog-content {
+                    padding: 1.5em;
+
+                    > span {
+                        float: none;
+                        display: inline-block;
+                        vertical-align: middle;
+                        line-height: $fontSize;
+                        margin: 0;
+
+                        &.p-icon {
+                            margin-right: .35em;
+                            font-size: $fontSize + 2;
+                        }
+                    }
+                }
+            }
+        }
+
+    .p-tooltip {
+        .p-tooltip-text {
+            @include overlay-shadow();
+        }
+
+        &.p-error {
+            border: 0 none;
+        }
+
+        .p-tooltip {
+            .p-tooltip-text {
+                background-color: grey;
+                color: grey;
+                @include overlay-shadow();
+            }
+
+            &.p-error {
+                border: 0 none;
+            }
+
+            &.p-tooltip-right {
+                .p-tooltip-arrow {
+                    border-right-color: grey;
+                }
+            }
+
+            &.p-tooltip-left {
+                .p-tooltip-arrow {
+                    border-left-color: grey;
+                }
+            }
+
+            &.p-tooltip-top {
+                .p-tooltip-arrow {
+                    border-top-color: grey;
+                }
+            }
+
+            &.p-tooltip-bottom {
+                .p-tooltip-arrow {
+                    border-bottom-color: grey;
+                }
+            }
+        }
+    }
+
+    .p-lightbox {
+        @include corner-all();
+        @include overlay-shadow();
+
+        .p-lightbox-caption {
+            padding: $headerPadding;
+
+            .p-lightbox-caption-text {
+                color: $headerTextColor;
+                margin: 0;
+            }
+
+            .p-lightbox-close {
+                padding: 0;
+                color: $headerTextColor;
+                @include transition(color $transitionDuration);
+
+                &:hover {
+                    color: lighten($primaryColor, 10%);
+                }
+            }
+        }
+
+        .p-lightbox-content-wrapper {
+            overflow: hidden;
+
+            .p-lightbox-nav-left, .p-lightbox-nav-right {
+                @include transition(all $transitionDuration);
+                font-size: 24px;
+                color: #ffffff;
+                margin-top: -.5em;
+
+                &:hover {
+                    @include scale(1.2);
+                }
+            }
+
+            .p-lightbox-content.p-lightbox-loading ~ a {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+body {
+    .card {
+        background-color: $contentBgColor;
+    }
+    .p-component {
+        font-family: $fontFamily;
+        text-decoration: none;
+    }
+
+    .p-highlight {
+        background-color: $primaryColor;
+        color: $primaryTextColor;
+    }
+
+    .p-error {
+        border: solid 1px red;
+    }
+
+    .p-disabled,
+    .p-component:disabled {
+        opacity: .35;
+        filter: Alpha(Opacity= 35);
+        background-image: none;
+        cursor: default !important;
+
+        * {
+            cursor: default !important;
+        }
+    }
+
+    .p-component-overlay {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .p-link {
+        background: transparent;
+        background-color: transparent;
+    }
+
+    a {
+        color: darken($primaryColor,10%);
+        text-decoration: none;
+
+        &:hover {
+            color: darken($primaryColor,10%);
+        }
+    }
+
+    .ajax-loader {
+        font-size: 28px;
+        color: $primaryColor;
+    }
+}

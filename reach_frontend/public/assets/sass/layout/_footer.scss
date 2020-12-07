@@ -1,0 +1,21 @@
+.layout-wrapper {
+    .layout-footer {
+        font-weight: 700;
+        background-color: $menuBgColor;
+        padding: 20px 40px;
+
+        .footer-text-left {
+            float: left;
+        }
+
+        .footer-text-right {
+            float: right;
+        }
+    }
+
+    &.layout-slim {
+        .layout-footer {
+            padding-left: 100px;
+        }
+    }
+}

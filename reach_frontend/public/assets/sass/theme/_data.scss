@@ -1,0 +1,927 @@
+body {
+    .p-paginator {
+        @include header();
+        padding: $headerPadding;
+
+        .p-paginator-first,.p-paginator-prev,.p-paginator-next,.p-paginator-last {
+            color: $headerTextColor;
+            height: 2em;
+            width: 2em;
+            padding: 0 .5em;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: $fontSize;
+            font-family: $fontFamily;
+            @include corner-all();
+            @include transition(background-color $transitionDuration);
+
+            &:before {
+                position: relative;
+                top: 3px;
+            }
+
+            &:not(.p-disabled):not(.p-highlight):hover {
+                @include list-item-hover();
+            }
+
+            &:focus {
+                outline: 0 none;
+            }
+        }
+
+        .p-paginator-pages {
+            padding: 0;
+            vertical-align: middle;
+            display: inline-block;
+            height: 2em;
+
+            .p-paginator-page {
+                color: $headerTextColor;
+                height: 2em;
+                width: auto;
+                min-width: 2em;
+                padding: 0 .5em;
+                vertical-align: middle;
+                display: inline-block;
+                font-size: $fontSize;
+                font-family: $fontFamily;
+                font-weight: 700;
+                @include corner-all();
+                @include transition(background-color $transitionDuration);
+
+                &.p-highlight {
+                    background-color: $primaryColor;
+                    color: $primaryTextColor;
+                }
+
+                &:not(.p-highlight):hover {
+                  @include list-item-hover();
+                }
+
+                &:focus {
+                    outline: 0 none;
+                    border-color: $primaryColor;
+                }
+            }
+        }
+    }
+    .p-datatable {
+        .p-datatable-header, .p-datatable-footer {
+            @include header();
+            padding: $headerPadding;
+        }
+
+        .p-datatable-header {
+            @include border-radius-top($borderRadius);
+            border-bottom: 0 none;
+        }
+
+        .p-datatable-footer {
+            @include border-radius-bottom($borderRadius);
+            border-top: 0 none;
+        }
+
+        .p-paginator {
+            padding: $headerPadding;
+        }
+
+        .p-dropdown-item {
+            color: $textColor;
+        }
+
+        .p-multiselect-item {
+            color: $textColor;
+        }
+
+        .p-datatable-thead > tr > th {
+            padding: $headerPadding;
+            border: 1px solid $datatableCellBorderColor;
+            background-color: $headerBgColor;
+            text-align: center;
+        }
+
+        .p-datatable-tfoot > tr > td {
+            padding: $headerPadding;
+            border: 1px solid $datatableCellBorderColor;
+            background-color: $primaryColor;
+            text-align: center;
+        }
+
+        .p-sortable-column {
+            .p-sortable-column-icon {
+                color: inherit;
+                margin-left: .125em;
+            }
+
+            &:not(.p-highlight):hover {
+                @include list-item-hover();
+
+                .p-sortable-column-icon {
+                    color: inherit;
+                }
+            }
+
+            &.p-highlight {
+                @include highlight();
+
+                .p-sortable-column-icon {
+                    color: inherit;
+                }
+            }
+        }
+
+        .p-editable-column {
+            input {
+                font-size: $fontSize;
+                font-family: $fontFamily;
+
+                &:focus {
+                    @include focused-input();
+                    outline-offset: 2px;
+                }
+            }
+        }
+
+        .p-datatable-tbody {
+            @include content();
+            > tr {
+                border-color: $datatableCellBorderColor;
+
+                > td {
+                    border: 1px solid $datatableCellBorderColor;
+                    padding: $contentPadding;
+
+                    .p-row-toggler {
+                        cursor: pointer;
+                        color: $textSecondaryColor;
+                        @include transition(color $transitionDuration);
+
+                        &:hover {
+                            color: $textColor;
+                        }
+                    }
+
+                    .p-row-editor-init-icon, .p-row-editor-cancel-icon,
+                    .p-row-editor-save-icon {
+                        color: $textColor;
+                    }
+                }
+
+                &.p-highlight {
+                    background-color: $primaryColor;
+                    color: $primaryTextColor;
+
+                    .p-row-toggler {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
+
+                    .p-row-editor-init-icon, .p-row-editor-cancel-icon,
+                    .p-row-editor-save-icon {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
+                }
+
+                &.p-highlight-contextmenu {
+                    background-color: lighten($primaryColor, 25%);
+                    color: $primaryTextColor;
+                }
+
+                &.p-datatable-dragpoint-bottom > td {
+                    box-shadow: inset 0 -2px 0 0 $primaryColor;
+                }
+            }
+
+            > tr:nth-child(even) {
+                background-color: $datableEvenRowBgColor;
+
+                &.p-highlight {
+                    background-color: $primaryColor;
+                    color: $primaryTextColor;
+
+                    .p-row-toggler {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
+
+                    .p-row-editor-init-icon, .p-row-editor-cancel-icon,
+                    .p-row-editor-save-icon {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
+                }
+
+                &.p-highlight-contextmenu {
+                    background-color: lighten($primaryColor, 25%);
+                    color: $primaryTextColor;
+
+                    .p-row-toggler {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.p-datatable-hoverable-rows {
+            .p-datatable-tbody > tr:not(.p-highlight):not(.p-highlight-contextmenu):hover {
+                cursor: pointer;
+                @include list-item-hover();
+
+                .p-row-editor-init-icon, .p-row-editor-cancel-icon,
+                .p-row-editor-save-icon {
+                    color: $listItemHoverTextColor;
+                }
+            }
+        }
+
+        .p-column-resizer-helper {
+            @include header();
+        }
+
+        .pi-sort-down {
+            position: relative;
+            top: -4px;
+        }
+
+        .p-datatable-scrollable-header,
+        .p-datatable-scrollable-footer {
+            @include header();
+        }
+
+        .p-column-filter {
+            width: 100%;
+        }
+
+        &.p-datatable-borderless {
+            .p-datatable-header {
+                border: 0 none;
+                border-bottom: 1px solid $contentBorderColor;
+            }
+
+            .p-datatable-thead {
+                > tr > th {
+                    border: 0 none;
+                    text-align: left;
+                    padding: 0.857em;
+                }
+            }
+
+            .p-datatable-tbody {
+                border: 0 none;
+
+                > tr {
+                    border: 0 none;
+
+                    > td {
+                        border: 0 none;
+                    }
+                }
+            }
+
+            .p-datatable-tfoot {
+                > tr > td {
+                    border: 0 none;
+                }
+            }
+
+            .p-paginator {
+                border: 0 none;
+            }
+        }
+    }
+
+    .p-dataview {
+        .p-paginator {
+            padding: $headerPadding;
+        }
+        .p-dataview-header {
+            background-color: $headerBgColor;
+            color: $textColor;
+            padding: $headerPadding;
+            border: 1px solid $contentBorderColor;
+            @include border-radius-top($borderRadius);
+            border-bottom: 0 none;
+
+            .p-inputtext {
+                width: auto;
+            }
+        }
+
+        .p-dataview-content {
+            background-color: $contentBgColor;
+            color: $textColor;
+            border: 1px solid $contentBorderColor;
+
+            > .p-grid {
+                margin-right: 0;
+                margin-left: 0;
+                margin-top: 0;
+            }
+
+            > .p-grid > div {
+                border-bottom: 1px solid $dividerColor;
+
+                &:last-child {
+                    border-bottom: 0 none;
+                }
+            }
+        }
+
+        .p-dataview-footer {
+            background-color: $contentBgColor;
+            color: $textColor;
+            padding: $headerPadding;
+            border: 1px solid $contentBorderColor;
+            border-top: 0 none;
+        }
+    }
+
+    .p-datagrid {
+        .p-datagrid-header {
+            padding: $headerPadding;
+        }
+
+        .p-paginator {
+            padding: $headerPadding;
+        }
+    }
+
+    .p-datalist {
+        .p-datalist-header {
+            padding: $headerPadding;
+        }
+
+        .p-paginator {
+            padding: $headerPadding;
+        }
+    }
+
+    .p-datascroller {
+        .p-datascroller-header {
+            @include header();
+            border-bottom: 0 none;
+            padding: $headerPadding;
+        }
+
+        .p-datascroller-content {
+            @include content();
+        }
+
+        .p-datascroller-footer {
+            @include header();
+            border-top: 0 none;
+            padding: $headerPadding;
+        }
+    }
+
+    .p-picklist {
+        .p-picklist-listwrapper {
+            padding: 0 $contentPadding;
+        }
+
+        .p-picklist-buttons {
+            button {
+                font-size: $fontSize + 2;
+            }
+        }
+
+        .p-picklist-caption {
+            @include header();
+            padding: $headerPadding;
+            @include border-radius-top($borderRadius);
+            border-bottom: 0;
+        }
+
+        .p-picklist-filter-container {
+            margin-bottom: -1px;
+
+            .pi {
+                color: $textSecondaryColor;
+            }
+        }
+
+        .p-picklist-list {
+            @include content();
+            @include corner-bottom();
+            padding: $listItemPadding;
+
+            .p-picklist-item {
+                padding: $listItemPadding;
+                margin: 0;
+                @include transition(box-shadow $transitionDuration);
+                @include border-radius(0);
+
+                &:not(.p-highlight):hover {
+                    @include list-item-hover();
+                }
+
+                &:focus {
+                    @include focused-element();
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    .p-orderlist {
+        .p-orderlist-controls {
+            button {
+                font-size: $fontSize + 2;
+            }
+        }
+
+        .p-orderlist-caption {
+            @include header();
+            padding: $headerPadding;
+            box-sizing: border-box;
+            @include border-radius-top($borderRadius);
+            border-bottom: 0;
+        }
+
+        .p-orderlist-filter-container {
+            margin-bottom: -1px;
+
+            .pi {
+                color: $textSecondaryColor;
+            }
+        }
+
+        .p-orderlist-list {
+            @include content();
+            @include corner-bottom();
+            padding: $listPadding;
+
+            .p-orderlist-item {
+                padding: $listItemPadding;
+                margin: 0;
+                @include border-radius(0);
+                @include transition(box-shadow $transitionDuration);
+
+                &:not(.p-highlight):hover {
+                    @include list-item-hover();
+                }
+
+                &:focus {
+                    @include focused-element();
+                    z-index: 1;
+                }
+            }
+        }
+
+        &.p-grid-responsive {
+            .p-grid-row {
+                .p-orderlist-controls {
+                    margin-right: 0;
+                    padding-right: 0.714em;
+                }
+            }
+        }
+    }
+
+    .p-organizationchart {
+        .p-organizationchart-node-content {
+            @include content();
+            @include corner-all();
+            &.p-organizationchart-selectable-node:not(.p-highlight):hover {
+                @include list-item-hover();
+            }
+
+            &.p-highlight {
+                .p-node-toggler {
+                    i {
+                        color: darken($primaryColor, 25%);
+                    }
+                }
+            }
+        }
+        .p-organizationchart-line-down {
+            background-color: darken($contentBorderColor, 10%);
+        }
+
+        .p-organizationchart-line-left {
+            border-right: 1px solid darken($contentBorderColor, 10%);
+        }
+
+        .p-organizationchart-line-right {
+
+        }
+
+        .p-organizationchart-line-top {
+            border-top: 1px solid darken($contentBorderColor, 10%);
+        }
+
+        .p-organizationchart-node-content {
+            border-color: darken($contentBorderColor, 10%);
+        }
+
+        .p-organizationchart-node-content .p-node-toggler {
+            color: darken($contentBorderColor, 10%);
+            bottom: -.7em;
+            margin-left: -.46em;
+        }
+    }
+
+    .p-treetable {
+        .p-treetable-header,
+        .p-treetable-footer {
+            @include header();
+            padding: $headerPadding;
+            text-align: center;
+        }
+
+        .p-treetable-header {
+            border-bottom: 0 none;
+        }
+
+        .p-treetable-footer {
+            border-top: 0 none;
+        }
+
+        .p-treetable-thead > tr > th {
+            padding:  $listItemPadding;
+            border: 1px solid $datatableCellBorderColor;
+            background-color: $contentBgColor;
+        }
+
+        .p-treetable-tfoot > tr > td {
+            border: 1px solid $datatableCellBorderColor;
+            background-color: $contentBgColor;
+            padding: $listItemPadding;
+        }
+
+        .p-sortable-column {
+            .p-sortable-column-icon {
+                color: $textSecondaryColor;
+            }
+
+            &:not(.p-highlight):hover {
+                @include list-item-hover();
+
+                .p-sortable-column-icon {
+                    @include list-item-hover();
+                }
+            }
+
+            &.p-highlight {
+                @include highlight();
+
+                .p-sortable-column-icon {
+                    @include highlight();
+                }
+            }
+
+            .p-column-title {
+                vertical-align: super;
+            }
+        }
+
+        .p-editable-column {
+            input {
+                font-size: $fontSize;
+                font-family: $fontFamily;
+            }
+        }
+
+        .p-treetable-tbody {
+            > tr {
+                @include content();
+                border: 0 none;
+
+                > td {
+                    background: $contentBgColor;
+                    padding: $contentPadding;
+                    border: 1px solid $contentBorderColor;
+
+                    &:last-child {
+                        border-bottom: 1px solid $dividerColor;
+                    }
+
+                    .p-treetable-toggler {
+                        color: $textSecondaryColor;
+                        vertical-align: middle;
+                    }
+                }
+
+                &.p-highlight {
+                    background-color: $primaryColor;
+                    color: $primaryTextColor;
+
+                    .p-treetable-toggler {
+                        color: $primaryTextColor;
+                    }
+                }
+
+                &.p-highlight-contextmenu {
+                    background-color: lighten($primaryColor, 25%);
+                    color: $primaryTextColor;
+
+                    .p-treetable-toggler {
+                        color: $primaryTextColor;
+                    }
+                }
+            }
+        }
+
+        &.p-treetable-hoverable-rows {
+            .p-treetable-tbody > tr:not(.p-highlight):not(.p-highlight-contextmenu):hover {
+                cursor: pointer;
+                @include list-item-hover();
+
+                .p-treetable-toggler {
+                    @include list-item-hover();
+                }
+            }
+        }
+
+        .p-column-resizer-helper {
+            @include header();
+        }
+
+        .p-treetable-scrollable-header,
+        .p-treetable-scrollable-footer {
+            @include header();
+        }
+    }
+
+    .p-tree {
+        @include content();
+        @include corner-all();
+        padding: .25em .5em;
+
+        .p-treenode {
+            padding: .15em 0;
+
+            .p-treenode-content {
+                @include corner-all();
+                @include transition(box-shadow $transitionDuration);
+                padding: .25em 0;
+
+                .p-tree-toggler {
+                    font-size: $fontSize + 2;
+                    vertical-align: middle;
+                    display: inline-block;
+                    float: none;
+                    margin: 0;
+                    color: $textSecondaryColor;
+                    &:focus {
+                        outline: 0;
+                    }
+                    margin-top: -2px;
+                }
+
+                .p-treenode-icon {
+                    vertical-align: middle;
+                    display: inline-block;
+                    margin: 0;
+                    font-size: $fontSize + 2;
+                }
+
+                .p-treenode-label {
+                    margin: 0;
+                    vertical-align: middle;
+                    display: inline-block;
+                    padding: 0 .25em;
+
+                    &.p-highlight {
+                        @include highlight();
+                    }
+                }
+
+                .p-checkbox {
+                    margin: 0 .25em;
+
+                    .p-checkbox-icon {
+                        margin: 0;
+                    }
+                }
+
+                &.p-highlight {
+                    @include highlight();
+
+                    .p-tree-toggler,
+                    .p-treenode-icon {
+                        @include highlight();
+                    }
+
+                    .p-checkbox {
+                        .p-checkbox-box {
+                            border-color: $contentBorderColor;
+                        }
+                    }
+                }
+
+                &.p-highlight-contextmenu {
+                    cursor: pointer;
+                    border: 1px dashed $primaryColor;
+                }
+
+                &.p-treenode-selectable:not(.p-highlight):hover {
+                    @include list-item-hover();
+
+                    .p-treenode-icon {
+                        @include list-item-hover();
+                    }
+
+                    .p-tree-toggler {
+                        @include list-item-hover();
+                    }
+                }
+
+                &:focus {
+                    @include focused-element();
+                }
+
+                > span {
+                    line-height: inherit;
+                }
+
+                &.p-treenode-dragover {
+                    @include list-item-hover();
+                }
+            }
+        }
+
+        &.p-tree-horizontal {
+            padding: .85em 0;
+
+            .p-treenode {
+                background: url("../layout/images/tth-connector.png") repeat-x scroll center center transparent;
+
+                .p-treenode-content {
+                    padding: $contentPadding;
+                    background-color: $contentBgColor;
+                    border: 1px solid $contentBorderColor;
+
+                    &.p-highlight {
+                        @include highlight();
+
+                        .p-tree-toggler,
+                        .p-treenode-icon {
+                            color: $primaryTextColor;
+                        }
+
+                        .p-checkbox {
+                            .p-checkbox-box {
+                                border-color: $contentBorderColor;
+                            }
+                        }
+                    }
+
+                    .p-checkbox {
+                        .p-icon {
+                            color: $primaryColor;
+                        }
+                    }
+
+                    .p-treenode-label:not(.p-highlight):hover {
+                        background-color: inherit;
+                        color: inherit;
+                    }
+
+                    &.p-treenode-selectable:not(.p-highlight):hover {
+                        @include list-item-hover();
+
+                        .p-treenode-icon {
+                            @include list-item-hover();
+                        }
+
+                        .p-tree-toggler {
+                            @include list-item-hover();
+                        }
+                    }
+                }
+            }
+
+            .p-treenode-connector-line {
+                background: url("../layout/images/tth-connector.png") repeat-y scroll 0 0 transparent
+            }
+        }
+    }
+
+    .fc {
+        .fc-button {
+            background-color: $primaryColor;
+            color: $primaryTextColor;
+            font-size: $fontSize;
+            font-family: $fontFamily;
+            height: 2.25em;
+            padding: 0 1em;
+            border: 0 none;
+
+            &:enabled:not(:focus):not(.fc-button-active):hover {
+                background-color: darken($primaryColor,5%);
+            }
+
+            &:enabled:not(.fc-button-active):focus {
+                outline: 0 none;
+                @include shadow(0 0 14px 0 $primaryColor);
+            }
+
+            &:not(:disabled).fc-button-active, &:active {
+                background-color: darken($primaryColor,12%);
+                color: $primaryTextColor;
+
+                &:focus {
+                    @include shadow(0 0 14px 0 $primaryColor);
+                }
+            }
+        }
+
+        .fc-head {
+            .fc-row {
+                background-color: $headerBgColor;
+                color: $headerTextColor;
+            }
+        }
+
+        td.fc-today {
+            background-color: $primaryColor;
+            color: $primaryTextColor;
+        }
+
+        .fc-toolbar {
+            .ui-state-active {
+                background-color: $primaryColor;
+                color: $primaryTextColor;
+            }
+        }
+
+        .fc-event {
+            border-color: $primaryColor;
+            background-color: darken($primaryColor,5%);
+            color: $primaryTextColor;
+        }
+
+        .fc-head-container {
+            @include header();
+            .fc-axis {
+                @include header();
+            }
+        }
+
+        .fc-day-header, .fc-divider {
+            @include header();
+        }
+
+        td {
+            border-color: $contentBorderColor;
+        }
+
+        table {
+            th {
+                padding: $headerPadding;
+            }
+
+            box-sizing: border-box;
+        }
+
+        div.ui-widget-content {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
+
+    .p-carousel {
+        .p-carousel-dot-item {
+            padding: 0 .25em;
+            button {
+                @include transition(background-color $transitionDuration, box-shadow $transitionDuration);
+                @include border-radius($borderRadius);
+
+                &:focus {
+                    @include focused-button();
+                }
+            }
+
+            .p-carousel-dot-icon {
+                font-size: 1.5em;
+                color: $textColor;
+            }
+
+            &.p-highlight {
+                background-color: transparent;
+
+                .p-carousel-dot-icon {
+                    color: $primaryColor;
+                }
+            }
+        }
+    }
+}

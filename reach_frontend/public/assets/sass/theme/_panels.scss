@@ -1,0 +1,293 @@
+body {
+    .p-panel {
+        @include content();
+        @include corner-all();
+        padding: 0;
+        border-color: 1px solid $contentBorderColor;
+
+        .p-panel-titlebar {
+            @include header();
+            border: 0 none;
+            border-bottom: 1px solid $headerBorderColor;
+            padding: $headerPadding;
+            @include border-radius-top($borderRadius);
+            @include border-radius-bottom(0px);
+
+            .p-panel-title {
+                vertical-align: middle;
+                font-weight: 700;
+            }
+
+            .p-panel-titlebar-icon {
+                margin: 0;
+                position: relative;
+                width: auto;
+                height: auto;
+                top: 1px;
+                line-height: auto;
+                color: $headerIconColor;
+                border: 1px solid transparent;
+                @include border-radius($borderRadius);
+                @include transition(color $transitionDuration, box-shadow $transitionDuration);
+
+                &:hover {
+                    color: $headerIconHoverColor;
+                }
+
+                span {
+                    display: block;
+                    margin: 0;
+                }
+
+                &:focus {
+                    @include focused-element();
+                }
+            }
+        }
+
+        .p-panel-content {
+            height: 100%;
+            box-sizing: border-box;
+            padding: $contentPadding;
+        }
+
+        .p-panel-footer {
+            padding: $headerPadding;
+            border: 0 none;
+            border-top: 1px solid $contentBorderColor;
+            margin: 0;
+        }
+
+        &.p-panel-collapsed-h {
+            .p-panel-titlebar {
+                padding-left: 40px;
+            }
+        }
+    }
+
+    .p-fieldset {
+        @include content();
+        @include corner-all();
+        padding: 0 0 .5em 0;
+
+        .p-fieldset-legend {
+            @include corner-all();
+            color: $headerTextColor;
+            background-color: $headerBgColor;
+            margin-left: 10px;
+            font-weight: 700;
+            border: 1px solid $headerBorderColor;
+            @include transition(background-color $transitionDuration);
+
+            > a {
+                @include transition(box-shadow $transitionDuration);
+            }
+
+            .p-fieldset-toggler {
+                float: none;
+                display: inline-block;
+                vertical-align: text-top;
+                margin-right: 4px;
+                height: $fontSize;
+                margin-top: 0;
+                padding: 0;
+                color: $headerIconColor;
+            }
+        }
+
+        .p-fieldset-legend-text{
+          color: $headerIconColor;
+        }
+
+        &.p-fieldset-toggleable {
+            .p-fieldset-legend {
+                &:hover {
+                    background-color: $headerHoverBgColor;
+                    color: $headerHoverTextColor;
+                }
+
+                > a:focus {
+                    @include focused-element();
+                }
+            }
+        }
+
+        .p-fieldset-content {
+            padding: $contentPadding;
+        }
+    }
+
+    .p-accordion {
+        .p-accordion-header {
+            @include corner-all();
+            background-color: $headerBgColor;
+            color: $textColor;
+            font-size: $fontSize;
+            border: 1px solid $contentBorderColor;
+            @include transition(background-color $transitionDuration);
+            margin-bottom: 0;
+            font-weight: 700;
+
+            &:not(.p-highlight):not(.p-disabled):hover {
+                background-color: $headerHoverBgColor;
+
+                a {
+                    background-color: $headerHoverBgColor;
+                }
+            }
+
+            &:not(.p-disabled).p-highlight {
+                background-color: $primaryColor;
+                color: $primaryTextColor;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+
+                a {
+                    color: $primaryTextColor;
+                }
+
+                span {
+                    color: $primaryTextColor;
+                }
+
+                .pi {
+                    color: $primaryTextColor;
+                }
+            }
+
+            > a {
+                padding: $headerPadding;
+                color: $textColor;
+                outline: 0 none;
+                @include transition(background-color $transitionDuration);
+
+                &:focus {
+                    @include focused-element();
+                }
+            }
+
+            > span {
+                color: $textColor;
+            }
+        }
+
+        .p-accordion-content {
+            @include content();
+            padding: $contentPadding;
+        }
+    }
+
+    .p-tabview {
+        padding: 0;
+
+        &.p-tabview-top,&.p-tabview-bottom,&.p-tabview-left,&.p-tabview-right {
+            border: 0 none;
+            background: transparent;
+
+            .p-tabview-nav {
+                margin-bottom: -1px;
+                padding: 0;
+                border: 0 none;
+                background: transparent;
+                @include box-sizing(border-box);
+                @include border-radius(0);
+
+                li {
+                    @include corner-top();
+                    position: static;
+                    box-sizing: border-box;
+                    background-color: $headerBgColor;
+                    @include transition(background-color $transitionDuration);
+
+                    a {
+                        padding: $tabHeaderPadding;
+                        color: $headerTextColor;
+                        font-weight: 700;
+                        @include transition(box-shadow $transitionDuration);
+
+                        .p-tabview-left-icon {
+                            margin-right: .25em;
+                        }
+
+                        .p-tabview-right-icon {
+                            margin-left: .25em;
+                        }
+
+                        &:focus {
+                            @include focused-element();
+                        }
+                    }
+
+                    .p-tabview-close {
+                        margin-top: 10px;
+                        color: $headerTextColor;
+                    }
+
+                    &:not(.p-highlight):not(.p-disabled):hover {
+                        background-color: $headerHoverBgColor;
+
+                        .pi-times {
+                            color: $headerIconHoverColor;
+                        }
+                        a {
+                            color: $headerHoverTextColor;
+                        }
+
+                        .p-tabview-close {
+                            color: $headerIconHoverColor;
+                        }
+                    }
+
+                    &.p-highlight {
+                        background-color: $primaryColor;
+                        color: $primaryTextColor;
+
+                        a {
+                            color: $primaryTextColor;
+                        }
+
+                        .p-tabview-close {
+                            color: $primaryTextColor;
+                        }
+                    }
+
+                    .p-tabview-close {
+                        color: $headerIconColor;
+                    }
+                }
+            }
+        }
+
+        &.p-tabview-left,&.p-tabview-right {
+            .p-tabview-nav {
+                li, li a {
+                    width: 100%;
+                }
+            }
+
+            .p-tabview-panel {
+                border-top: 1px solid $contentBorderColor;
+                border-left: 0 none;
+                border-right: 0 none;
+            }
+        }
+
+        .p-tabview-panel {
+            padding: $contentPadding;
+            border: 1px solid $contentBorderColor;
+        }
+    }
+
+    .p-toolbar {
+        @include header();
+        @include corner-all();
+        background-color: $headerBgColor;
+        border-color: $headerBorderColor;
+        padding: $headerPadding;
+
+        .p-toolbar-separator {
+            vertical-align: middle;
+            margin: 0 .5em;
+        }
+    }
+}
